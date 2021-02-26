@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1"
+               inlineStyle="color:Black; border-color:Black; border-style:solid;">
+        <af:panelHeader text=" " id="ph1">
+          <f:facet name="context"/>
+          <f:facet name="menuBar"/>
+          <f:facet name="toolbar"/>
+          <f:facet name="legend">
+            <af:outputText value="Merchandising Finance" id="ot1"
+                           inlineStyle="color:Black; font-family:Georgia, 'Times New Roman', times, Serif; font-size:x-large; font-weight:bold; text-align:left; vertical-align:middle;"/>
+          </f:facet>
+          <f:facet name="info"/>
+        </af:panelHeader>
+        <af:panelCollection id="pc1" inlineStyle="width:auto;">
+          <f:facet name="menus"/>
+          <f:facet name="toolbar">
+            <af:toolbar id="t2">
+              <af:commandButton
+                                text="Create"
+                                id="cb1" partialSubmit="true"
+                                actionListener="#{BackinBean.CustomCreate}"
+                                icon="/icon/create-new.png"
+                                inlineStyle="border-color:Black; border-style:solid; border-width:2px; background-color:Window; color:Black; font-size:small;"/>
+              <af:commandButton actionListener="#{bindings.Delete.execute}"
+                                text="Delete"
+                                id="cb2"
+                                inlineStyle="border-color:Black; border-style:solid; border-width:2px; background-color:Window; color:Black; font-size:small;"
+                                icon="/icon/delete_red - Copy.png"/>
+              <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                text="Save"
+                                id="cb3"
+                                inlineStyle="border-color:Black; border-style:solid; border-width:2px; background-color:Window; color:Black; font-size:small;"
+                                icon="/icon/save new.png"/>
+            </af:toolbar>
+          </f:facet>
+          <f:facet name="statusbar"/>
+          <af:table value="#{bindings.XxOmFinanceVO1.collectionModel}" var="row"
+                    rows="#{bindings.XxOmFinanceVO1.rangeSize}"
+                    emptyText="#{bindings.XxOmFinanceVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.XxOmFinanceVO1.rangeSize}"
+                    rowBandingInterval="0"
+                    filterModel="#{bindings.XxOmFinanceVO1Query.queryDescriptor}"
+                    queryListener="#{bindings.XxOmFinanceVO1Query.processQuery}"
+                    filterVisible="true" varStatus="vs"
+                    selectedRowKeys="#{bindings.XxOmFinanceVO1.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.XxOmFinanceVO1.collectionModel.makeCurrent}"
+                    rowSelection="single" id="t1"
+                    partialTriggers="::cb1 ::cb2" editingMode="clickToEdit"
+                    inlineStyle="width:auto; height:auto;">
+            <af:column sortProperty="Id" filterable="true" sortable="true"
+                       headerText="#{bindings.XxOmFinanceVO1.hints.Id.label}"
+                       id="c2" width="30">
+              <af:inputText value="#{row.bindings.Id.inputValue}"
+                            label="#{bindings.XxOmFinanceVO1.hints.Id.label}"
+                            required="#{bindings.XxOmFinanceVO1.hints.Id.mandatory}"
+                            columns="#{bindings.XxOmFinanceVO1.hints.Id.displayWidth}"
+                            maximumLength="#{bindings.XxOmFinanceVO1.hints.Id.precision}"
+                            shortDesc="#{bindings.XxOmFinanceVO1.hints.Id.tooltip}"
+                            id="it4" readOnly="true">
+                <f:validator binding="#{row.bindings.Id.validator}"/>
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.XxOmFinanceVO1.hints.Id.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="BuyerId" filterable="true" sortable="true"
+                       headerText="Buyer Id"
+                       id="c3" align="center" width="140">
+              <af:inputListOfValues id="buyerIdId"
+                                    popupTitle="Search and Select: #{bindings.XxOmFinanceVO1.hints.BuyerId.label}"
+                                    value="#{row.bindings.BuyerId.inputValue}"
+                                    model="#{row.bindings.BuyerId.listOfValuesModel}"
+                                    required="#{bindings.XxOmFinanceVO1.hints.BuyerId.mandatory}"
+                                    columns="#{bindings.XxOmFinanceVO1.hints.BuyerId.displayWidth}"
+                                    shortDesc="#{bindings.XxOmFinanceVO1.hints.BuyerId.tooltip}">
+                <f:validator binding="#{row.bindings.BuyerId.validator}"/>
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.XxOmFinanceVO1.hints.BuyerId.format}"/>
+                <af:autoSuggestBehavior suggestedItems="#{row.bindings.BuyerId.suggestedItems}"/>
+              </af:inputListOfValues>
+            </af:column>
+            <af:column headerText="Buyer Name"
+                       id="c11" align="center" sortable="true"
+                       filterable="true" sortProperty="BuyerName" width="150">
+              <af:outputText value="#{row.BuyerName}" id="ot2"/>
+            </af:column>
+            <af:column sortProperty="ItemType" filterable="true" sortable="true"
+                       headerText="Item Type"
+                       id="c6" align="center">
+              <af:inputText value="#{row.bindings.ItemType.inputValue}"
+                            label="#{bindings.XxOmFinanceVO1.hints.ItemType.label}"
+                            required="#{bindings.XxOmFinanceVO1.hints.ItemType.mandatory}"
+                            columns="#{bindings.XxOmFinanceVO1.hints.ItemType.displayWidth}"
+                            maximumLength="#{bindings.XxOmFinanceVO1.hints.ItemType.precision}"
+                            shortDesc="#{bindings.XxOmFinanceVO1.hints.ItemType.tooltip}"
+                            id="it2">
+                <f:validator binding="#{row.bindings.ItemType.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="Price" filterable="true" sortable="true"
+                       headerText="Price"
+                       id="c4" align="center">
+              <af:inputText value="#{row.bindings.Price.inputValue}"
+                            label="#{bindings.XxOmFinanceVO1.hints.Price.label}"
+                            required="#{bindings.XxOmFinanceVO1.hints.Price.mandatory}"
+                            columns="#{bindings.XxOmFinanceVO1.hints.Price.displayWidth}"
+                            maximumLength="#{bindings.XxOmFinanceVO1.hints.Price.precision}"
+                            shortDesc="#{bindings.XxOmFinanceVO1.hints.Price.tooltip}"
+                            id="it3">
+                <f:validator binding="#{row.bindings.Price.validator}"/>
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.XxOmFinanceVO1.hints.Price.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="Fromdate" filterable="true" sortable="true"
+                       headerText="From date"
+                       id="c10" align="center" width="120">
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.Fromdate}" id="id5"/>
+              </f:facet>
+              <af:inputDate value="#{row.bindings.Fromdate.inputValue}"
+                            label="#{bindings.XxOmFinanceVO1.hints.Fromdate.label}"
+                            required="#{bindings.XxOmFinanceVO1.hints.Fromdate.mandatory}"
+                            shortDesc="#{bindings.XxOmFinanceVO1.hints.Fromdate.tooltip}"
+                            id="id3">
+                <f:validator binding="#{row.bindings.Fromdate.validator}"/>
+                <af:convertDateTime pattern="#{bindings.XxOmFinanceVO1.hints.Fromdate.format}"/>
+              </af:inputDate>
+            </af:column>
+            <af:column sortProperty="Todate" filterable="true" sortable="true"
+                       headerText="Todate"
+                       id="c7" align="center" width="120">
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.Todate}" id="id8"/>
+              </f:facet>
+              <af:inputDate value="#{row.bindings.Todate.inputValue}"
+                            label="#{bindings.XxOmFinanceVO1.hints.Todate.label}"
+                            required="#{bindings.XxOmFinanceVO1.hints.Todate.mandatory}"
+                            shortDesc="#{bindings.XxOmFinanceVO1.hints.Todate.tooltip}"
+                            id="id7">
+                <f:validator binding="#{row.bindings.Todate.validator}"/>
+                <af:convertDateTime pattern="#{bindings.XxOmFinanceVO1.hints.Todate.format}"/>
+              </af:inputDate>
+            </af:column>
+            <af:column sortProperty="CreationDate" filterable="true"
+                       sortable="true"
+                       headerText="Creation Date"
+                       id="c1" width="120" align="center" visible="true">
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.CreationDate}"
+                              id="id4"/>
+              </f:facet>
+              <af:inputDate value="#{row.bindings.CreationDate.inputValue}"
+                            label="#{bindings.XxOmFinanceVO1.hints.CreationDate.label}"
+                            required="#{bindings.XxOmFinanceVO1.hints.CreationDate.mandatory}"
+                            shortDesc="#{bindings.XxOmFinanceVO1.hints.CreationDate.tooltip}"
+                            id="id2">
+                <f:validator binding="#{row.bindings.CreationDate.validator}"/>
+                <af:convertDateTime pattern="#{bindings.XxOmFinanceVO1.hints.CreationDate.format}"/>
+              </af:inputDate>
+            </af:column>
+            <af:column sortProperty="CreationBy" filterable="true"
+                       sortable="true"
+                       headerText="Creation By"
+                       id="c9" align="center">
+              <af:inputText value="#{row.bindings.CreationBy.inputValue}"
+                            label="#{bindings.XxOmFinanceVO1.hints.CreationBy.label}"
+                            required="#{bindings.XxOmFinanceVO1.hints.CreationBy.mandatory}"
+                            columns="#{bindings.XxOmFinanceVO1.hints.CreationBy.displayWidth}"
+                            maximumLength="#{bindings.XxOmFinanceVO1.hints.CreationBy.precision}"
+                            shortDesc="#{bindings.XxOmFinanceVO1.hints.CreationBy.tooltip}"
+                            id="it5">
+                <f:validator binding="#{row.bindings.CreationBy.validator}"/>
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.XxOmFinanceVO1.hints.CreationBy.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="UpdateDate" filterable="true"
+                       sortable="true"
+                       headerText="Update Date"
+                       id="c8" align="center">
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.UpdateDate}" id="id6"/>
+              </f:facet>
+              <af:inputDate value="#{row.bindings.UpdateDate.inputValue}"
+                            label="#{bindings.XxOmFinanceVO1.hints.UpdateDate.label}"
+                            required="#{bindings.XxOmFinanceVO1.hints.UpdateDate.mandatory}"
+                            shortDesc="#{bindings.XxOmFinanceVO1.hints.UpdateDate.tooltip}"
+                            id="id1">
+                <f:validator binding="#{row.bindings.UpdateDate.validator}"/>
+                <af:convertDateTime pattern="#{bindings.XxOmFinanceVO1.hints.UpdateDate.format}"/>
+              </af:inputDate>
+            </af:column>
+            <af:column sortProperty="UpdateBy" filterable="true" sortable="true"
+                       headerText="Update By"
+                       id="c5" align="center">
+              <af:inputText value="#{row.bindings.UpdateBy.inputValue}"
+                            label="#{bindings.XxOmFinanceVO1.hints.UpdateBy.label}"
+                            required="#{bindings.XxOmFinanceVO1.hints.UpdateBy.mandatory}"
+                            columns="#{bindings.XxOmFinanceVO1.hints.UpdateBy.displayWidth}"
+                            maximumLength="#{bindings.XxOmFinanceVO1.hints.UpdateBy.precision}"
+                            shortDesc="#{bindings.XxOmFinanceVO1.hints.UpdateBy.tooltip}"
+                            id="it1">
+                <f:validator binding="#{row.bindings.UpdateBy.validator}"/>
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.XxOmFinanceVO1.hints.UpdateBy.format}"/>
+              </af:inputText>
+            </af:column>
+          </af:table>
+        </af:panelCollection>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>
