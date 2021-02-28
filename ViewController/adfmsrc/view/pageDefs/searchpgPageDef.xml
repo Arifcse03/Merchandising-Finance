@@ -27,6 +27,7 @@
           <Item Value="UpdateDate"/>
           <Item Value="UpdateBy"/>
           <Item Value="BuyerName"/>
+          <Item Value="Remarks"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

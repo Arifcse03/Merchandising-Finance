@@ -126,6 +126,26 @@ public class XxOmFinanceEOImpl extends EntityImpl {
                 obj.setUpdateBy((Number)value);
             }
         }
+        ,
+        BuyerName {
+            public Object get(XxOmFinanceEOImpl obj) {
+                return obj.getBuyerName();
+            }
+
+            public void put(XxOmFinanceEOImpl obj, Object value) {
+                obj.setBuyerName((String)value);
+            }
+        }
+        ,
+        Remarks {
+            public Object get(XxOmFinanceEOImpl obj) {
+                return obj.getRemarks();
+            }
+
+            public void put(XxOmFinanceEOImpl obj, Object value) {
+                obj.setRemarks((String)value);
+            }
+        }
         ;
         private static AttributesEnum[] vals = null;
         private static int firstIndex = 0;
@@ -153,6 +173,7 @@ public class XxOmFinanceEOImpl extends EntityImpl {
             return vals;
         }
     }
+
     public static final int ID = AttributesEnum.Id.index();
     public static final int BUYERID = AttributesEnum.BuyerId.index();
     public static final int ITEMTYPE = AttributesEnum.ItemType.index();
@@ -163,11 +184,23 @@ public class XxOmFinanceEOImpl extends EntityImpl {
     public static final int CREATIONBY = AttributesEnum.CreationBy.index();
     public static final int UPDATEDATE = AttributesEnum.UpdateDate.index();
     public static final int UPDATEBY = AttributesEnum.UpdateBy.index();
+    public static final int BUYERNAME = AttributesEnum.BuyerName.index();
+    public static final int REMARKS = AttributesEnum.Remarks.index();
 
     /**
      * This is the default constructor (do not remove).
      */
     public XxOmFinanceEOImpl() {
+    }
+
+    /**
+     * @return the definition object for this instance class.
+     */
+    public static synchronized EntityDefImpl getDefinitionObject() {
+        if (mDefinitionObject == null) {
+            mDefinitionObject = EntityDefImpl.findDefObject("Entity.XxOmFinanceEO");
+        }
+        return mDefinitionObject;
     }
 
     /**
@@ -331,6 +364,38 @@ public class XxOmFinanceEOImpl extends EntityImpl {
     }
 
     /**
+     * Gets the attribute value for BuyerName, using the alias name BuyerName.
+     * @return the BuyerName
+     */
+    public String getBuyerName() {
+        return (String)getAttributeInternal(BUYERNAME);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for BuyerName.
+     * @param value value to set the BuyerName
+     */
+    public void setBuyerName(String value) {
+        setAttributeInternal(BUYERNAME, value);
+    }
+
+    /**
+     * Gets the attribute value for Remarks, using the alias name Remarks.
+     * @return the Remarks
+     */
+    public String getRemarks() {
+        return (String)getAttributeInternal(REMARKS);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for Remarks.
+     * @param value value to set the Remarks
+     */
+    public void setRemarks(String value) {
+        setAttributeInternal(REMARKS, value);
+    }
+
+    /**
      * getAttrInvokeAccessor: generated method. Do not modify.
      * @param index the index identifying the attribute
      * @param attrDef the attribute
@@ -363,6 +428,7 @@ public class XxOmFinanceEOImpl extends EntityImpl {
         super.setAttrInvokeAccessor(index, value, attrDef);
     }
 
+
     /**
      * @param id key constituent
 
@@ -370,16 +436,6 @@ public class XxOmFinanceEOImpl extends EntityImpl {
      */
     public static Key createPrimaryKey(Number id) {
         return new Key(new Object[]{id});
-    }
-
-    /**
-     * @return the definition object for this instance class.
-     */
-    public static synchronized EntityDefImpl getDefinitionObject() {
-        if (mDefinitionObject == null) {
-            mDefinitionObject = EntityDefImpl.findDefObject("Entity.XxOmFinanceEO");
-        }
-        return mDefinitionObject;
     }
 
     /**

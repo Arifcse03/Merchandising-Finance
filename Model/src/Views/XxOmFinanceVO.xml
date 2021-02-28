@@ -19,21 +19,25 @@
     ViewObjectName="lov.BuyerLov"
     RowLevelBinds="true"/>
   <ListBinding
-    Name="LOV_BuyerId"
+    Name="LOV_BuyerName"
     ListVOName="BuyerLov1"
     ListRangeSize="10"
     NullValueFlag="none"
-    NullValueId="LOV_BuyerId_LOVUIHints_NullValueId"
+    NullValueId="LOV_BuyerName_LOVUIHints_NullValueId"
     MRUCount="0">
     <AttrArray Name="AttrNames">
+      <Item Value="BuyerName"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
       <Item Value="BuyerId"/>
     </AttrArray>
     <AttrArray Name="ListAttrNames">
+      <Item Value="CustomerName"/>
       <Item Value="CustomerId"/>
     </AttrArray>
     <AttrArray Name="ListDisplayAttrNames">
-      <Item Value="CustomerId"/>
       <Item Value="CustomerName"/>
+      <Item Value="CustomerId"/>
     </AttrArray>
     <DisplayCriteria
       Hint="showAndExecute"/>
@@ -49,9 +53,9 @@
        XxOmFinanceEO.CREATION_BY, 
        XxOmFinanceEO.UPDATE_DATE, 
        XxOmFinanceEO.UPDATE_BY,
-        ac.CUSTOMER_NAME Buyer_Name
-FROM XX_OM_FINANCE_T XxOmFinanceEO ,ar_customers ac
-where XxOmFinanceEO.BUYER_ID=ac.CUSTOMER_ID]]>
+       XxOmFinanceEO.BUYER_NAME,
+       XxOmFinanceEO.REMARKS
+FROM XX_OM_FINANCE_T XxOmFinanceEO]]>
   </SQLQuery>
   <EntityUsage
     Name="XxOmFinanceEO"
@@ -68,15 +72,7 @@ where XxOmFinanceEO.BUYER_ID=ac.CUSTOMER_ID]]>
     PrecisionRule="true"
     EntityAttrName="BuyerId"
     EntityUsage="XxOmFinanceEO"
-    AliasName="BUYER_ID"
-    LOVName="LOV_BuyerId">
-    <Properties>
-      <SchemaBasedProperties>
-        <CONTROLTYPE
-          Value="input_text_lov"/>
-      </SchemaBasedProperties>
-    </Properties>
-  </ViewAttribute>
+    AliasName="BUYER_ID"/>
   <ViewAttribute
     Name="ItemType"
     PrecisionRule="true"
@@ -127,17 +123,22 @@ where XxOmFinanceEO.BUYER_ID=ac.CUSTOMER_ID]]>
     AliasName="UPDATE_BY"/>
   <ViewAttribute
     Name="BuyerName"
-    IsUpdateable="false"
-    IsPersistent="false"
     PrecisionRule="true"
-    Precision="50"
-    Type="java.lang.String"
-    ColumnType="VARCHAR2"
+    EntityAttrName="BuyerName"
+    EntityUsage="XxOmFinanceEO"
     AliasName="BUYER_NAME"
-    Expression="BUYER_NAME"
-    SQLType="VARCHAR">
-    <DesignTime>
-      <Attr Name="_DisplaySize" Value="50"/>
-    </DesignTime>
+    LOVName="LOV_BuyerName">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
+  <ViewAttribute
+    Name="Remarks"
+    PrecisionRule="true"
+    EntityAttrName="Remarks"
+    EntityUsage="XxOmFinanceEO"
+    AliasName="REMARKS"/>
 </ViewObject>
