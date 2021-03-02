@@ -28,6 +28,8 @@
           <Item Value="UpdateBy"/>
           <Item Value="BuyerName"/>
           <Item Value="Remarks"/>
+          <Item Value="CreatedByName"/>
+          <Item Value="UpdateByName"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

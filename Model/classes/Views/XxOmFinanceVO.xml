@@ -18,6 +18,10 @@
     Name="BuyerLov1"
     ViewObjectName="lov.BuyerLov"
     RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="item_type_lov1"
+    ViewObjectName="lov.item_type_lov"
+    RowLevelBinds="true"/>
   <ListBinding
     Name="LOV_BuyerName"
     ListVOName="BuyerLov1"
@@ -42,6 +46,24 @@
     <DisplayCriteria
       Hint="showAndExecute"/>
   </ListBinding>
+  <ListBinding
+    Name="LOV_ItemType"
+    ListVOName="item_type_lov1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOV_ItemType_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ItemType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ItemType"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ItemType"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <SQLQuery>
     <![CDATA[SELECT XxOmFinanceEO.ID, 
        XxOmFinanceEO.BUYER_ID, 
@@ -54,7 +76,9 @@
        XxOmFinanceEO.UPDATE_DATE, 
        XxOmFinanceEO.UPDATE_BY,
        XxOmFinanceEO.BUYER_NAME,
-       XxOmFinanceEO.REMARKS
+       XxOmFinanceEO.REMARKS,
+       (SELECT FU.USER_NAME FROM FND_USER FU WHERE FU.USER_ID = XxOmFinanceEO.CREATION_BY) CREATED_BY_NAME,
+(SELECT FU.USER_NAME FROM FND_USER FU WHERE FU.USER_ID = XxOmFinanceEO.UPDATE_BY) UPDATE_BY_NAME
 FROM XX_OM_FINANCE_T XxOmFinanceEO]]>
   </SQLQuery>
   <EntityUsage
@@ -78,7 +102,15 @@ FROM XX_OM_FINANCE_T XxOmFinanceEO]]>
     PrecisionRule="true"
     EntityAttrName="ItemType"
     EntityUsage="XxOmFinanceEO"
-    AliasName="ITEM_TYPE"/>
+    AliasName="ITEM_TYPE"
+    LOVName="LOV_ItemType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="Price"
     PrecisionRule="true"
@@ -141,4 +173,34 @@ FROM XX_OM_FINANCE_T XxOmFinanceEO]]>
     EntityAttrName="Remarks"
     EntityUsage="XxOmFinanceEO"
     AliasName="REMARKS"/>
+  <ViewAttribute
+    Name="CreatedByName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CREATED_BY_NAME"
+    Expression="CREATED_BY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="UpdateByName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="UPDATE_BY_NAME"
+    Expression="UPDATE_BY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
 </ViewObject>
